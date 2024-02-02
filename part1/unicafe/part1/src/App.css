@@ -1,6 +1,36 @@
+:root {
+  --good-color: #64ff7e;
+  --neutral-color: #e3ff64;
+  --bad-color: #ff6464;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  margin: 0 auto;
+}
+
+.good:hover {
+  border-color: var(--good-color);
+}
+
+.neutral:hover {
+  border-color: var(--neutral-color);
+}
+
+.bad:hover {
+  border-color: var(--bad-color);
+}
+
+.goodText {
+  color: var(--good-color);
+}
+
+.neutralText {
+  color: var(--neutral-color);
+}
+
+.badText {
+  color: var(--bad-color);
 }
