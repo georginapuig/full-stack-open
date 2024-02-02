@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import './App.css';
 
-// eslint-disable-next-line react/prop-types
 const Button = ({ text, handleClick, btnClass }) => {
   return (
     <button className={btnClass} onClick={handleClick}>
@@ -10,14 +10,30 @@ const Button = ({ text, handleClick, btnClass }) => {
   );
 };
 
+const Statistics = ({ good, neutral, bad }) => {
+  const all = good + neutral + bad;
+  const average = (good - bad) / all;
+  const positive = (good * 100) / all;
+
+  return (
+    <div>
+      <h1>statistics</h1>
+      <p className='goodText'>good: {good}</p>
+      <p className='neutralText'>neutral: {neutral}</p>
+      <p className='badText'>bad: {bad}</p>
+
+      <p>all: {all}</p>
+      <p>average: {all !== 0 ? average : 0}</p>
+      <p>positive: {all !== 0 ? positive : 0}%</p>
+    </div>
+  );
+};
+
 const App = () => {
   // guarda los clics de cada botón en su propio estado
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const all = good + neutral + bad;
-  const average = (good - bad) / all;
-  const positive = (good * 100) / all;
 
   return (
     <div>
@@ -34,13 +50,7 @@ const App = () => {
       />
       <Button btnClass='bad' handleClick={() => setBad(bad + 1)} text='bad' />
 
-      <h1>statistics</h1>
-      <p className='goodText'>good: {good}</p>
-      <p className='neutralText'>neutral: {neutral}</p>
-      <p className='badText'>bad: {bad}</p>
-      <p>all: {all}</p>
-      <p>average: {average}</p>
-      <p>positive: {positive}%</p>
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
