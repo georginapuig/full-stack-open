@@ -50,7 +50,11 @@ const App = () => {
       />
       <Button btnClass='bad' handleClick={() => setBad(bad + 1)} text='bad' />
 
-      <Statistics good={good} neutral={neutral} bad={bad} />
+      {(good || neutral || bad) === 0 ? (
+        <h3>No feedback given</h3>
+      ) : (
+        <Statistics good={good} neutral={neutral} bad={bad} />
+      )}
     </div>
   );
 };
