@@ -13,9 +13,10 @@ const Button = ({ text, handleClick, btnClass }) => {
 const StatisticLine = ({ classText, text, statistic }) => {
   return (
     <>
-      <p className={classText}>
-        {text}: {statistic}
-      </p>
+      <tr className={classText}>
+        <td>{text}</td>
+        <td>{statistic}</td>
+      </tr>
     </>
   );
 };
@@ -28,18 +29,21 @@ const Statistics = ({ good, neutral, bad }) => {
   return (
     <div>
       <h1>statistics</h1>
-      <StatisticLine classText='goodText' text='good' statistic={good} />
-      <StatisticLine
-        classText='neutralText'
-        text='neutral'
-        statistic={neutral}
-      />
-      <StatisticLine classText='badText' text='bad' statistic={bad} />
+      <table>
+        <tbody>
+          <StatisticLine classText='goodText' text='good' statistic={good} />
+          <StatisticLine
+            classText='neutralText'
+            text='neutral'
+            statistic={neutral}
+          />
+          <StatisticLine classText='badText' text='bad' statistic={bad} />
 
-      <StatisticLine text='all' statistic={all} />
-      <StatisticLine text='average' statistic={all !== 0 ? average : 0} />
-      <StatisticLine text='positive' statistic={all} />
-      <p>all: {all !== 0 ? positive : 0}</p>
+          <StatisticLine text='all' statistic={all} />
+          <StatisticLine text='average' statistic={all !== 0 ? average : 0} />
+          <StatisticLine text='positive' statistic={all !== 0 ? positive : 0} />
+        </tbody>
+      </table>
     </div>
   );
 };
