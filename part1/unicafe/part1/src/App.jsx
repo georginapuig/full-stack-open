@@ -2,22 +2,32 @@
 import { useState } from 'react';
 import './App.css';
 
-const Button = ({ text, handleClick, btnClass }) => {
-  return (
-    <button className={btnClass} onClick={handleClick}>
-      {text}
-    </button>
-  );
-};
+const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-const StatisticLine = ({ classText, text, statistic }) => {
   return (
-    <>
-      <tr className={classText}>
-        <td>{text}</td>
-        <td>{statistic}</td>
-      </tr>
-    </>
+    <div>
+      <h1>give feedback</h1>
+      <Button
+        btnClass='goodBtn'
+        handleClick={() => setGood(good + 1)}
+        text='good'
+      />
+      <Button
+        btnClass='neutralBtn'
+        handleClick={() => setNeutral(neutral + 1)}
+        text='neutral'
+      />
+      <Button
+        btnClass='badBtn'
+        handleClick={() => setBad(bad + 1)}
+        text='bad'
+      />
+
+      <Statistics good={good} neutral={neutral} bad={bad} />
+    </div>
   );
 };
 
@@ -29,52 +39,40 @@ const Statistics = ({ good, neutral, bad }) => {
   return (
     <div>
       <h1>statistics</h1>
-      <table>
-        <tbody>
-          <StatisticLine classText='goodText' text='good' statistic={good} />
-          <StatisticLine
-            classText='neutralText'
-            text='neutral'
-            statistic={neutral}
-          />
-          <StatisticLine classText='badText' text='bad' statistic={bad} />
-
-          <StatisticLine text='all' statistic={all} />
-          <StatisticLine text='average' statistic={all !== 0 ? average : 0} />
-          <StatisticLine text='positive' statistic={all !== 0 ? positive : 0} />
-        </tbody>
-      </table>
+      {all === 0 ? (
+        <h3>No feedback given</h3>
+      ) : (
+        <table>
+          <tbody>
+            <StatisticLine classText='good' text='good' value={good} />
+            <StatisticLine classText='neutral' text='neutral' value={neutral} />
+            <StatisticLine classText='bad' text='bad' value={bad} />
+            <StatisticLine text='all' value={all} />
+            <StatisticLine text='average' value={average} />
+            <StatisticLine text='positive' value={positive} />
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
 
-const App = () => {
-  // guarda los clics de cada botón en su propio estado
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
-
+const StatisticLine = ({ classText, text, value }) => {
   return (
-    <div>
-      <h1>give feedback</h1>
-      <Button
-        btnClass='good'
-        handleClick={() => setGood(good + 1)}
-        text='good'
-      />
-      <Button
-        btnClass='neutral'
-        handleClick={() => setNeutral(neutral + 1)}
-        text='neutral'
-      />
-      <Button btnClass='bad' handleClick={() => setBad(bad + 1)} text='bad' />
+    <>
+      <tr className={classText}>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
+    </>
+  );
+};
 
-      {(good || neutral || bad) === 0 ? (
-        <h3>No feedback given</h3>
-      ) : (
-        <Statistics good={good} neutral={neutral} bad={bad} />
-      )}
-    </div>
+const Button = ({ text, handleClick, btnClass }) => {
+  return (
+    <button className={btnClass} onClick={handleClick}>
+      {text}
+    </button>
   );
 };
 

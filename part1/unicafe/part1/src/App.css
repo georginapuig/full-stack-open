@@ -11,26 +11,26 @@
   margin: 0 auto;
 }
 
-.good:hover {
+.goodBtn:hover {
   border-color: var(--good-color);
 }
 
-.neutral:hover {
+.neutralBtn:hover {
   border-color: var(--neutral-color);
 }
 
-.bad:hover {
+.badBtn:hover {
   border-color: var(--bad-color);
 }
 
-.goodText {
+.good {
   color: var(--good-color);
 }
 
-.neutralText {
+.neutral {
   color: var(--neutral-color);
 }
 
-.badText {
+.bad {
   color: var(--bad-color);
 }
