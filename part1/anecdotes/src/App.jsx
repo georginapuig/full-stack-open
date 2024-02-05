@@ -1,3 +1,4 @@
+import './App.css';
 import { useState } from 'react';
 
 const App = () => {
@@ -14,7 +15,17 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
 
-  return <div>{anecdotes[selected]}</div>;
+  const handleClick = () => {
+    const randomNumber = Math.floor(Math.random() * anecdotes.length);
+    setSelected(randomNumber);
+  };
+
+  return (
+    <div>
+      <p>{anecdotes[selected]}</p>
+      <button onClick={handleClick}>next anecdote</button>
+    </div>
+  );
 };
 
 export default App;
