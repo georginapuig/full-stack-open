@@ -14,7 +14,9 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
-  const [points, setPoints] = useState(new Uint8Array(anecdotes.length));
+  const [votes, setVotes] = useState(new Uint8Array(anecdotes.length));
+  const votesMaxNum = Math.max(...votes);
+  const votesMaxNumIndex = votes.indexOf(votesMaxNum);
 
   const handleClickNext = () => {
     const randomNumber = Math.floor(Math.random() * anecdotes.length);
@@ -22,22 +24,23 @@ const App = () => {
   };
 
   const handleClickVote = () => {
-    const pointsCopy = [...points];
-    pointsCopy[selected] += 1;
-    console.log((pointsCopy[selected] += 1));
-    setPoints(pointsCopy);
+    const votesCopy = [...votes];
+    votesCopy[selected] += 1;
+    setVotes(votesCopy);
   };
 
   return (
     <div>
-      <h1>Anecdote of the day</h1>
+      <h2>Anecdote of the day</h2>
       <p>{anecdotes[selected]}</p>
-      <p>has {points[selected]} vote(s)</p>
+      <p>has {votes[selected]} vote(s)</p>
 
       <button onClick={handleClickVote}>vote</button>
       <button onClick={handleClickNext}>next anecdote</button>
 
-      <h1>Anecdote with most votes</h1>
+      <h2>Anecdote with most votes</h2>
+      <p>{anecdotes[votesMaxNumIndex]}</p>
+      <p>has {votesMaxNum} vote(s)</p>
     </div>
   );
 };
