@@ -24,16 +24,20 @@ const App = () => {
   const handleClickVote = () => {
     const pointsCopy = [...points];
     pointsCopy[selected] += 1;
+    console.log((pointsCopy[selected] += 1));
     setPoints(pointsCopy);
   };
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {points[selected]} vote(s)</p>
 
       <button onClick={handleClickVote}>vote</button>
       <button onClick={handleClickNext}>next anecdote</button>
+
+      <h1>Anecdote with most votes</h1>
     </div>
   );
 };
