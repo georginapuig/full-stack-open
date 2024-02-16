@@ -22,20 +22,15 @@ const App = () => {
         exercises: 14,
         id: 3,
       },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4,
+      },
     ],
   };
 
   return <Course course={course} />;
-
-  // return (
-  //   <div>
-  //     <Header course={course} />
-  //     <Content parts={parts} />
-  //     <Total
-  //       sum={parts[0].exercises + parts[1].exercises + parts[2].exercises}
-  //     />
-  //   </div>
-  // );
 };
 
 export default App;
