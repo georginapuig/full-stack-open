@@ -19,11 +19,10 @@ const Content = ({ parts }) => (
 );
 
 const Total = ({ parts }) => {
-  let sum = 0;
-
-  parts.map((part) => {
-    sum += part.exercises;
-  });
+  const sum = parts.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.exercises,
+    0
+  );
 
   return <p>Number of exercises {sum}</p>;
 };
