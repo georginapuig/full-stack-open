@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-const Header = ({ course }) => <h1>{course.name}</h1>;
+const Header = ({ course }) => <h1>{course}</h1>;
 
 const Part = ({ part }) => {
   return (
@@ -27,14 +27,18 @@ const Total = ({ parts }) => {
   return <p>Number of exercises {sum}</p>;
 };
 
-const Course = ({ course }) => {
-  return (
-    <>
-      <Header course={course} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
-    </>
-  );
+const Course = ({ courses }) => {
+  {
+    return courses.map((course) => {
+      return (
+        <>
+          <Header course={course.name} />
+          <Content parts={course.parts} />
+          <Total parts={course.parts} />
+        </>
+      );
+    });
+  }
 };
 
 export default Course;
