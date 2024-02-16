@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import './App.css';
-import Course from './components/course';
+import Course from './components/Course';
 
 const App = () => {
   const courses = [
@@ -48,7 +48,9 @@ const App = () => {
     },
   ];
 
-  return <Course courses={courses} />;
+  return courses.map((course) => {
+    return <Course key={course.id} course={course} />;
+  });
 };
 
 export default App;
