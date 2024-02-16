@@ -18,13 +18,22 @@ const Content = ({ parts }) => (
   </>
 );
 
-// const Total = ({ sum }) => <p>Number of exercises {sum}</p>;
+const Total = ({ parts }) => {
+  let sum = 0;
+
+  parts.map((part) => {
+    sum += part.exercises;
+  });
+
+  return <p>Number of exercises return {sum}</p>;
+};
 
 const Course = ({ course }) => {
   return (
     <>
       <Header course={course} />
       <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </>
   );
 };
